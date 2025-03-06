@@ -2,6 +2,7 @@
 import '../styles/global.scss';
 import Footer from '../componants/Footer.astro';
 import Header from '../componants/Header.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 const pageTitle = "About Me";
 const identity = {
@@ -19,51 +20,38 @@ const goal = 3;
 
 const skillColor = "navy";
 ---
+<BaseLayout pageTitle={pageTitle}>
+	<style is:global define:vars={{skillColor}}>
+		h1 {
+		  color: purple;
+		  font-size: 4rem;
+		}
+		.skill {
+			color: var(--skillColor);
+			font-weight: bold;
+		}
+	</style>
+	<article>
+		<p>I'm trying out astro, horray!</p>
+		<p><b>YESS.</b></p>
+		<p>in this line of text I'm trying to see about how many words it takes before the paragraph text wrap over. I'm curious because I want to see how this looks on mobile and for some reason this felt faster to me than going and looking up lorum ipsum to paste into the page. Weird, oh well!</p>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Ex Site | {pageTitle}</title>
-		<style define:vars={{skillColor}}>
-			h1 {
-			  color: purple;
-			  font-size: 4rem;
+		<h2>Here are a few facts about me:</h2>
+		<ul>
+			<li>My name is {identity.firstName}.</li>
+			<li>I live in {identity.country} and I work as a {identity.occupation}.</li>
+			{identity.hobbies.length >= 2 &&
+				<li class="skill">Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
 			}
-			.skill {
-				color: var(--skillColor);
-				font-weight: bold;
-			}
-		  </style>
-	</head>
-	<body>
-		<Header />
-		<article>
-			<h1>{pageTitle}</h1>
-			<p>I'm trying out astro, horray!</p>
-			<p><b>YESS.</b></p>
-			<p>in this line of text I'm trying to see about how many words it takes before the paragraph text wrap over. I'm curious because I want to see how this looks on mobile and for some reason this felt faster to me than going and looking up lorum ipsum to paste into the page. Weird, oh well!</p>
+		</ul>
+		<p>My skills are:</p>
+		<ul>
+			{skills.map((skill) => <li>{skill}</li>)}
+		</ul>
 
-			<h2>Here are a few facts about me:</h2>
-			<ul>
-				<li>My name is {identity.firstName}.</li>
-				<li>I live in {identity.country} and I work as a {identity.occupation}.</li>
-				{identity.hobbies.length >= 2 &&
-					<li class="skill">Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
-				}
-			</ul>
-			<p>My skills are:</p>
-			<ul>
-				{skills.map((skill) => <li>{skill}</li>)}
-			</ul>
-
-			<h2>Logic to display text...</h2>
-			{happy && <p>I am happy to be learning Astro!</p>}
-			{finished && <p>I finished this tutorial!</p>}
-			{goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
-		</article>
-		<Footer />
-	</body>
-</html>
+		<h2>Logic to display text...</h2>
+		{happy && <p>I am happy to be learning Astro!</p>}
+		{finished && <p>I finished this tutorial!</p>}
+		{goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
+	</article>
+</BaseLayout>
