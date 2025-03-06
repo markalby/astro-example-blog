@@ -1,5 +1,6 @@
 ---
-
+import '../styles/global.css';
+import Navigation from '../componants/nav.astro'
 ---
 
 <html lang="en">
@@ -11,11 +12,7 @@
 		<title>My Astro Site</title>
 	</head>
 	<body>
-		<nav>
-			<a href="/">Home</a>
-			<a href="/about/">About</a>
-			<a href="/blog/">Blog</a>
-		</nav>
+		<Navigation />
 		<article>
 			<h1>Blog</h1>
 			<p>
