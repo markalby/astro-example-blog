@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 const pageTitle = "About Me"
 const identity = {
   firstName: "Mark",
@@ -12,6 +14,8 @@ const skills = ["HTML", "CSS", "JavaScript", "Alpine", "Astro", "Writing Docs"];
 const happy = true;
 const finished = false;
 const goal = 3;
+
+const skillColor = "navy";
 ---
 
 <html lang="en">
@@ -21,6 +25,16 @@ const goal = 3;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Ex Site | {pageTitle}</title>
+		<style define:vars={{skillColor}}>
+			h1 {
+			  color: purple;
+			  font-size: 4rem;
+			}
+			.skill {
+				color: var(--skillColor);
+				font-weight: bold;
+			}
+		  </style>
 	</head>
 	<body>
 		<nav>
@@ -32,13 +46,14 @@ const goal = 3;
 			<h1>{pageTitle}</h1>
 			<p>I'm trying out astro, horray!</p>
 			<p><b>YESS.</b></p>
+			<p>in this line of text I'm trying to see about how many words it takes before the paragraph text wrap over. I'm curious because I want to see how this looks on mobile and for some reason this felt faster to me than going and looking up lorum ipsum to paste into the page. Weird, oh well!</p>
 
 			<h2>Here are a few facts about me:</h2>
 			<ul>
 				<li>My name is {identity.firstName}.</li>
 				<li>I live in {identity.country} and I work as a {identity.occupation}.</li>
 				{identity.hobbies.length >= 2 &&
-					<li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
+					<li class="skill">Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
 				}
 			</ul>
 			<p>My skills are:</p>
