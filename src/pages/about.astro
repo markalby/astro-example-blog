@@ -1,7 +1,7 @@
 ---
-import '../styles/global.css';
-import Navigation from '../componants/Navigation.astro';
+import '../styles/global.scss';
 import Footer from '../componants/Footer.astro';
+import Header from '../componants/Header.astro';
 
 const pageTitle = "About Me";
 const identity = {
@@ -39,7 +39,7 @@ const skillColor = "navy";
 		  </style>
 	</head>
 	<body>
-		<Navigation />
+		<Header />
 		<article>
 			<h1>{pageTitle}</h1>
 			<p>I'm trying out astro, horray!</p>
